@@ -46,8 +46,10 @@ body.update-userdata-bg {
     left: 0;
     box-shadow: 2px 0 12px rgba(44, 62, 80, 0.08);
     z-index: 100;
-    transition: width 0.3s;
+    transition: all 0.3s ease;
 }
+
+
 
 .sidebar-title {
     font-size: 28px;
@@ -776,145 +778,198 @@ form button:hover {
     }
 }
 
+/* Hide toggle button by default */
+.sidebar-toggle {
+    display: none;
+}
+
+.sidebar-overlay {
+    display: none;
+}
+
 @media screen and (max-width: 768px) {
     .sidebar-container {
-        position: relative;
-        width: 100%;
-        height: auto;
-        min-height: 60px;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        padding: 10px 8px;
-        box-shadow: 0 2px 8px rgba(44, 62, 80, 0.08);
+        position: fixed;
+        top: 0;
+        left: -250px;
+        width: 250px;
+        height: 100vh;
+        z-index: 1001;
+        transition: left 0.3s ease;
+        background: linear-gradient(135deg, #2c3e50 60%, #34495e 100%);
+        padding: 20px;
+        padding-top: 60px;
     }
-    .sidebar-title {
-        font-size: 22px;
-        margin-bottom: 0;
+    
+    .sidebar-container.open {
+        left: 0;
     }
-    .sidebar-list {
-        display: flex;
-        flex-direction: row;
-        gap: 10px;
-        margin: 0;
+    
+    .sidebar-toggle {
+        display: block;
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        z-index: 1002;
+        background: linear-gradient(135deg, #2c3e50 60%, #34495e 100%);
+        border: none;
+        color: white;
+        padding: 10px 12px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 18px;
+        box-shadow: 0 2px 8px rgba(44, 62, 80, 0.15);
+        transition: all 0.3s ease;
     }
-    .sidebar-list li {
-        margin: 0;
+    
+    .sidebar-container.open ~ .sidebar-toggle {
+        left: 270px;
     }
-    .dashboard {
-        flex-direction: column;
+    
+
+    
+    .sidebar-toggle:hover {
+        background: linear-gradient(135deg, #34495e 60%, #2c3e50 100%);
+        transform: scale(1.05);
     }
+    
+    .sidebar-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+    }
+    
+    .sidebar-overlay.active {
+        display: block;
+    }
+    
     .dashboard-main,
     .manage-project-container,
     .manage-skill-container,
     form {
         margin-left: 0;
-        padding: 18px 6px;
+        padding: 20px 16px;
+        padding-top: 80px;
     }
-    .project-card-container,
-    .skill-card-container {
-        grid-template-columns: 1fr 1fr;
-        gap: 14px;
-    }
-    .project-card, .skill-card {
-        padding: 14px 4px 12px 0;
-        border-radius: 10px;
-        gap: 7px;
-    }
-    .project-card .project-img {
-        height: 120px;
-    }
-    .login-box {
-        width: 98%;
-        padding: 18px 4px;
-        border-radius: 8px;
-    }
-}
-
-@media screen and (max-width: 540px) {
-    .sidebar-title {
-        font-size: 18px;
-    }
-    .sidebar-list li a {
-        font-size: 15px;
-        padding: 7px 8px;
-    }
+    
     .dashboard-welcome {
-        font-size: 22px;
+        font-size: 24px;
     }
+    
     .dashboard-header {
         flex-direction: column;
-        gap: 10px;
+        gap: 12px;
         align-items: flex-start;
     }
+    
     .project-card-container,
     .skill-card-container {
         grid-template-columns: 1fr;
-        gap: 10px;
+        gap: 16px;
     }
+    
+    .heading {
+        font-size: 28px;
+        margin-bottom: 20px;
+        margin-top: 10px;
+    }
+    
+    .add-btn {
+        font-size: 16px;
+        padding: 12px 20px;
+        margin-bottom: 20px;
+    }
+    
+    .project-title, .skill-title {
+        font-size: 20px;
+        margin-bottom: 8px;
+    }
+    
+    .project-card, .skill-card {
+        padding: 16px;
+        margin-bottom: 16px;
+    }
+    
+    .project-card .project-img {
+        height: 180px;
+        margin-bottom: 12px;
+    }
+    
+    .project-links a {
+        font-size: 16px;
+        margin-right: 16px;
+    }
+    
+    .card-actions .btn {
+        font-size: 14px;
+        padding: 10px 16px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .sidebar-toggle {
+        top: 15px;
+        left: 15px;
+        padding: 8px 10px;
+        font-size: 16px;
+    }
+    
     .dashboard-main,
     .manage-project-container,
     .manage-skill-container,
     form {
-        padding: 10px 2px;
+        padding: 16px 12px;
+        padding-top: 70px;
     }
-    .popup-box {
-        padding: 8px 2px;
-        border-radius: 10px;
+    
+    .dashboard-welcome {
+        font-size: 20px;
     }
-    .popup-form {
-        max-width: 98vw;
-        gap: 12px;
+    
+    .heading {
+        font-size: 24px;
+        margin-bottom: 16px;
+        margin-top: 8px;
     }
-    .popup-form input,
-    .popup-form textarea {
+    
+    .add-btn {
         font-size: 14px;
-        padding: 8px 4px;
+        padding: 10px 16px;
+        margin-bottom: 16px;
     }
-    .popup-actions button {
+    
+    .project-card, .skill-card {
+        padding: 12px;
+        margin-bottom: 12px;
+    }
+    
+    .project-card .project-img {
+        height: 140px;
+        margin-bottom: 10px;
+    }
+    
+    .project-title, .skill-title {
+        font-size: 18px;
+        margin-bottom: 6px;
+    }
+    
+    .project-links a {
         font-size: 14px;
-        padding: 8px 8px;
+        margin-right: 12px;
     }
-    form {
-        padding: 12px 4px;
-        max-width: 98vw;
-        border-radius: 10px;
-    }
-    form input {
-        font-size: 14px;
-        padding: 8px 4px;
-    }
-    form button {
-        font-size: 14px;
-        padding: 8px 8px;
-    }
-    .update-userdata-card {
-        padding: 16px 4px;
-        max-width: 99vw;
-        border-radius: 12px;
-        gap: 14px;
-    }
-    .update-userdata-card input {
-        font-size: 14px;
-        padding: 8px 4px;
-    }
-    .update-userdata-card button {
-        font-size: 15px;
-        padding: 10px 0;
-    }
-    .update-userdata-form {
-        width: 98vw;
-        padding: 16px 4px;
-        border-radius: 10px;
-        gap: 10px;
-    }
-    .update-userdata-form input {
-        font-size: 14px;
-        padding: 8px 4px;
-    }
-    .update-userdata-form button {
-        font-size: 15px;
-        padding: 10px 0;
+    
+    .card-actions .btn {
+        font-size: 12px;
+        padding: 8px 12px;
     }
 }
+
+
+
+
+
