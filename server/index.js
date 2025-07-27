@@ -15,7 +15,22 @@ const skillRoutes = require("./routes/skillRoutes");
 const contactRoutes = require("./routes/contactRoutes");
 
 
-app.use(cors());
+const allowedOrigins = [
+    process.env.FRONTEND_URL_1, 
+    process.env.FRONTEND_URL_2   
+];
+
+app.use(cors({
+    origin: (origin, callback) => {
+        if (!origin) return callback(null, true);
+        allowedOrigins.includes(origin)
+            ? callback(null, true)
+            : callback(new Error('Not allowed by CORS'));
+    },
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+}));
 app.use(express.json());
 
 app.use("/api", authRoutes);
