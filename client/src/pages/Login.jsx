@@ -18,6 +18,8 @@ const Login = () => {
         setError("");
 
         try {
+            console.log(import.meta.env.VITE_BACK_URL)
+            console.log(`${import.meta.env.VITE_BACK_URL}/login`)
             const res = await axios.post(`${import.meta.env.VITE_BACK_URL}/login`, formData);
             if (res.data.token) {
                 localStorage.setItem("token", res.data.token);
