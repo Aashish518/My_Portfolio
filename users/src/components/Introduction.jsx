@@ -7,7 +7,7 @@ const Introduction = () => {
         <div className="home-hero-text">
           <h1 className="home-hero-title animate-title">Hi, I'm Aashish</h1>
           <p className="home-hero-subtitle animate-subtitle">MERN Stack Developer</p>
-          <a href="/Aashish CV.pdf" download="Aashish_Resume.pdf" className="home-hero-button animate-button">Download Resume</a>
+          <a href="/Aashish_Resume.pdf" download="Aashish_Resume.pdf" className="home-hero-button animate-button">Download Resume</a>
         </div>
         <div className="home-hero-image animate-image">
           <div className="image-container">

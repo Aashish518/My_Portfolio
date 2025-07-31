@@ -11,6 +11,7 @@ body {
   color: #333;
   line-height: 1.6;
   min-height: 100vh;
+  scroll-padding-top: 100px; /* Account for fixed navbar */
 }
 
 /* Header & Navigation */
